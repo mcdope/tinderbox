@@ -55,6 +55,8 @@ class MessageReplyTask(val xAuthToken: String, val tinderBot: ActorRef, val matc
           // the conversation is empty, send an opener
           case None =>
             if(m.messages.size==0) {
+              Logger.info("[tinderbot] Did not send message opener to %s. " format m._id)
+              /*
               val randomOpener = FunMessages.messages(Random.nextInt(FunMessages.messages.size)).value.replace("{name}", m.person.map(_.name).getOrElse(""))
               new TinderApi(Some(xAuthToken)).sendMessage(m._id, randomOpener).map { result =>
                 result match {
@@ -75,6 +77,7 @@ class MessageReplyTask(val xAuthToken: String, val tinderBot: ActorRef, val matc
                     Logger.debug("[tinderbot] Message reply was: \"%s...\"" format randomOpener.substring(0, 10))
                 }
               }
+              */
             } else {
               createStopGap(m, true)
             }
@@ -96,6 +99,8 @@ class MessageReplyTask(val xAuthToken: String, val tinderBot: ActorRef, val matc
 
                   // reply to the conversation with the next branch in the tree
                   case Some(branch) =>
+                    Logger.info("[tinderbot] Did not reply to %s. " format m._id)
+                    /*
                     new TinderApi(Some(xAuthToken)).sendMessage(m._id, branch.value).map { result =>
                       result match {
                         case Left(e) =>
@@ -115,6 +120,7 @@ class MessageReplyTask(val xAuthToken: String, val tinderBot: ActorRef, val matc
                           Logger.debug("[tinderbot] Message reply was: \"%s...\"" format branch.value.substring(0, 10))
                       }
                     }
+                    */
                 }
 
             }
