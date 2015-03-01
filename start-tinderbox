@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Start tinderbot
+dist/tinderbox-1.1-SNAPSHOT/bin/tinderbox > tinderbot-output.txt 2>&1 &
+# Open in default browser
+xdg-open http://localhost:9000/ 
+
